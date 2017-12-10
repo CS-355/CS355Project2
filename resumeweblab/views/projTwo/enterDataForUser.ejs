@@ -1,0 +1,27 @@
+<%- include("../includes/header.ejs", {title: "Add New User "});%>
+<h1>Add New User</h1>
+<form action="/projTwo/addNewUser" method = "get">
+    <input id="program_id" name="program_id" type="hidden" value="<%=program_id%>" />
+    Name: <input id="name" name="name" type="text" />
+    <br />
+    <br />
+    <!-- addresses-->
+
+    contributions in lines of code: <input id="contributions" name="contributions" type="text" />
+    <br />
+    <br />
+    languages:
+    <select id="language_id" name="language_id" multiple="multiple">
+        <% for(var i = 0; language.length > i; i++ ) {%>
+        <option value="<%= language[i].language_id%>" ><%=language[i].language_name%></option>
+        <% } %>
+    </select>
+
+    <br />
+    <br />
+    <input type="submit" />
+
+</form>
+<%- include("../includes/footer.ejs");%>
+
+</html>

@@ -1,0 +1,52 @@
+<%-include("../includes/header.ejs", {title:"Program - View All"}); %>
+
+<h1>Programs</h1>
+
+
+
+<% if(locals.sucess) {%>
+  <div class="col-mid-12">
+    <dif id="message" class="alert alert_sucess col-md-4">
+      <%=person_name%> was sucessfully saved.
+    </div>
+  </div>
+  <% } %>
+
+
+<form action="/projTwo/addNewUser" method = "get">
+    Search Name<input id="person_name" name="person_name" type="text" />
+
+    <br />
+    <br />
+
+
+    <br />
+    <br />
+    <input type="submit" />
+
+</form>
+
+<a href="/addProgram">Add New Program</a>
+<br />
+<br />
+
+<a href="/addLanguage">Add New Language</a>
+<br />
+<br />
+<a href="/addStyle">Add New Style</a>
+<br />
+<br />
+<table border="1">
+    <th>program</th><th>Actions</th></tr>
+
+    <%for(var i=0; programs.length > i; i++) {%>
+    <tr>
+        <td><a href = "/?program_id=<%=programs[i].program_id%>"><%=programs[i].program_name %></a></td>
+        <td>
+            <button onclick="event.preventDefault();window.location.href='/projTwo/addUser/?program_id=<%=programs[i].program_id%>'">Add User</button>
+
+        </td>
+    </tr>
+    <% } %>
+</table>
+<%- include("../includes/footer.ejs");%>

@@ -1,0 +1,34 @@
+<%- include("../includes/header.ejs", {title: "Add New School "});%>
+<h1>Add New School</h1>
+<!--enter program-->
+<form action="/school/insertNewSchool" method = "get">
+    Name: <input id="school_name" name="school_name" type="text" />
+    <br />
+    <br />
+    <!-- addresses-->
+    Addresses :
+    <select id="address_id" name="address_id" multiple="multiple">
+        <% for(var i = 0; address.length > i; i++ ) {%>
+        <option value="<%= address[i].address_id%>" ><%=address[i].street%> <%=address[i].zip_code%></option>
+        <% } %>
+    </select>
+
+    <!-- Initialize the multiselect plugin: -->
+    <!--
+    <script type="text/javascript">
+        $(document).ready(function()
+            {
+                $('#address_id').multiselect();
+            }
+        );
+
+    </script>
+    -->
+    <br />
+    <br />
+    <input type="submit" />
+
+</form>
+<%- include("../includes/footer.ejs");%>
+
+</html>

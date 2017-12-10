@@ -1,0 +1,36 @@
+<%- include("../includes/header.ejs", {title: "Pick Style For Language "});%>
+<h1>Pick Style For Language</h1>
+<form action="/projTwo/pickStylePerLanguage" method = "get">
+
+  <input type="hidden" name="person_id" id="person_id" value="<%=user_id%>" />
+
+    <%for(var i = 0; i < languages.length; i++) {%>
+        <%=console.log(i, languages.length)%>
+        <input type="hidden" name = "program_id" id="program_id" value = "<%=program_id%>" />
+        <input type="hidden" name="language_id" id="language_id" value="<%=languages[i].language_id%>" />
+        language: <%=languages[i].language_name%>
+        <br />
+        <br />
+
+        <!-- styles-->
+        Styles :
+        <select id="style_id" name="style_id" multiple="multiple">
+            <% for(var j = 0; styles.length > j; j++ ) {%>
+                <option value="<%= styles[j].style_id%>" ><%=styles[j].style_name%></option>
+            <%}%>
+
+        </select>
+
+        <br />
+        <br />
+
+    <% } %>
+
+    <br />
+    <br />
+    <input type="submit" />
+
+</form>
+<%- include("../includes/footer.ejs");%>
+
+</html>
