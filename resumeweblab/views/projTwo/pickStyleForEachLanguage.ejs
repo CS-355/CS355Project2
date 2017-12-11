@@ -14,6 +14,8 @@
 
         <!-- styles-->
         Styles :
+        must have a drop down list but tell user that they can only pick one item
+
         <select id="style_id" name="style_id" multiple="multiple">
             <% for(var j = 0; styles.length > j; j++ ) {%>
                 <option value="<%= styles[j].style_id%>" ><%=styles[j].style_name%></option>

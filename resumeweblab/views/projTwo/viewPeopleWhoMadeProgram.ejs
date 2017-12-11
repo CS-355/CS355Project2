@@ -1,0 +1,40 @@
+<%- include("../includes/header.ejs", {title: "Users - "});%>
+    <h1>People</h1>
+        <!--person_name, contribution_in_lines_of_code, language_name
+
+    program_id: null,
+    language_link: 2,
+    program_name: 'program_name_1',
+    person_id: 21,
+    person_name: 'a',
+    contribution_in_lines_of_code: '1',
+    language_id: 7,
+    style_id: null,
+    language_name: 'A',
+    style_name: null
+-->
+<ul>
+
+  <% program.forEach(item => {%>
+
+    <li>Name: <%=item.person_name%></li>
+    <li>lines of code <%=item.name%> contributed : <%=item.contribution_in_lines_of_code%></li>
+    <br />
+    <br />
+    <%})%>
+
+
+        <!-- account email -->
+
+
+
+    </ul>
+    <br />
+    <br />
+
+    <!--
+      all companies
+    -->
+<a href="/projTwo/listAllPrograms"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

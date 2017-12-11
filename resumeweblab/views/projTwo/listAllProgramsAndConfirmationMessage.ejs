@@ -13,8 +13,8 @@
   <% } %>
 
 
-<form action="/projTwo/addNewUser" method = "get">
-    Search Name<input id="person_name" name="person_name" type="text" />
+<form action="/projTwo/getPeopleFitting" method = "get">
+    Find Person With Amount of Contributions Above <input id="contributions_number" name="contributions_number" type="text" />
 
     <br />
     <br />
@@ -25,15 +25,10 @@
     <input type="submit" />
 
 </form>
-
-<a href="/addProgram">Add New Program</a>
 <br />
 <br />
 
-<a href="/addLanguage">Add New Language</a>
-<br />
-<br />
-<a href="/addStyle">Add New Style</a>
+<button onclick="event.preventDefault();window.location.href='/projTwo/addProgramLanguageStyle'">Add New Program Language Style</button>
 <br />
 <br />
 <table border="1">
@@ -41,7 +36,7 @@
 
     <%for(var i=0; programs.length > i; i++) {%>
     <tr>
-        <td><a href = "/?program_id=<%=programs[i].program_id%>"><%=programs[i].program_name %></a></td>
+        <td><a href = "/projTwo/?program_id=<%=programs[i].program_id%>"><%=programs[i].program_name %></a></td>
         <td>
             <button onclick="event.preventDefault();window.location.href='/projTwo/addUser/?program_id=<%=programs[i].program_id%>'">Add User</button>
 

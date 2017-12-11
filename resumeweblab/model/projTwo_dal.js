@@ -81,6 +81,37 @@ exports.getUserName = (person_id) =>
       });
   });
 }
+exports.getPeopleWithXContributionsF = (contributions_number) =>
+{
+
+  return new Promise((resolve, reject) =>
+  {
+    let myquery = `call getPeopleWithXContributions(${contributions_number});`;
+    connection.query(myquery, (err, result) =>
+    {
+
+      console.log(myquery, "\n")
+      err ? reject(err) : resolve(result);
+    });
+  });
+
+}
+
+exports.getUsersOfProgramF = (program_id) =>
+{
+
+  return new Promise((resolve, reject) =>
+  {
+    let myquery = `call getUsersOfProgram(${program_id});`;
+    connection.query(myquery, (err, result) =>
+    {
+
+      console.log(myquery, "\n")
+      err ? reject(err) : resolve(result);
+    });
+  });
+
+}
 
 exports.insert = (data, item) =>
 {

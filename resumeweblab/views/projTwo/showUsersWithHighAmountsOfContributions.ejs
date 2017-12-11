@@ -1,0 +1,21 @@
+<%- include("../includes/header.ejs", {title: "Users - "});%>
+    <h1><%=program.program_name%></h1>
+
+    <!--program_name, person_name, contribution_in_lines_of_code, style, language-->
+    <ul>
+    <% program.forEach(item => {%>
+      <li>program name: <%=item.program_name%></li>
+      <li>name of the coder: <%=item.person_name%></li>
+
+      <li>lines of code contributed: <%=item.contribution_in_lines_of_code%></li>
+      <li>style: <%=item.style_name%></li>
+      <li>language: <%=item.language_name%></li>
+
+      <br />
+      <br />
+      <%})%>
+    </ul>
+
+<a href="/projTwo/listAllPrograms"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>
