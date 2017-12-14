@@ -3,11 +3,13 @@
 <h1>Programs</h1>
 
 
-
-<% if(locals.sucess) {%>
+<% if(locals.success) {%>
   <div class="col-mid-12">
     <dif id="message" class="alert alert_sucess col-md-4">
-      <%=person_name%> was sucessfully saved.
+      <%for(var i=0; persons.length > i; i++) {%>
+
+        <%=persons[i]%> was sucessfully saved.
+      <%}%>
     </div>
   </div>
   <% } %>
@@ -44,4 +46,18 @@
     </tr>
     <% } %>
 </table>
+
+Subquery:
+<br />
+<table border="1">
+  <tr><th>programs that are procedural</th></tr>
+  <% for(var i=0; subquery.length > i; i++ ) {%>
+  <tr>
+      <td><%= subquery[i].program_name %></td>
+  </tr>
+  <% } %>
+</table>
+
+<a href="/projTwo/About">About Us</a>
+
 <%- include("../includes/footer.ejs");%>

@@ -2,8 +2,21 @@
 
 <h1>Programs</h1>
 
+
+
+
+<% if(locals.success) {%>
+  <div class="col-mid-12">
+    <dif id="message" class="alert alert_sucess col-md-4">
+      <%for(var i=0; persons.length > i; i++) {%>
+
+        <%=persons[i]%> was sucessfully saved.
+      <%}%>
+    </div>
+  </div>
+  <% } %>
 <form action="/projTwo/getPeopleFitting" method = "get">
-    Search Name<input id="contributions_number" name="contributions_number" type="text" />
+    Find Person With Amount of Contributions Above <input id="contributions_number" name="contributions_number" type="text" />
 
     <br />
     <br />
@@ -34,4 +47,19 @@
         </tr>
         <% } %>
     </table>
+  <br />
+  Subquery:
+  <br />
+  <table border="1">
+    <tr><th>programs that are procedural</th></tr>
+    <% for(var i=0; subquery.length > i; i++ ) {%>
+    <tr>
+        <td><%= subquery[i].program_name %></td>
+    </tr>
+    <% } %>
+  </table>
+
+    <a href="/projTwo/About">About Us</a>
+
+
 <%- include("../includes/footer.ejs");%>

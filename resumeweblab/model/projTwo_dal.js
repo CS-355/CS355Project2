@@ -4,12 +4,24 @@ var db = require('./db_connection.js');
 /* DATABASE CONFIGURATION*/
 var connection = mysql.createConnection(db.config);
 
+exports.getMaxLanguageLink = () =>
+{
+  return new Promise((resolve, reject) =>
+  {
+    let mysql = `select max(language_link) as max_language_link from language;`;
+    connection.query(mysql, (err, result) =>
+      {
+        err ? reject(err) : resolve(result);
+      });
+  });
+
+}
 
 exports.getPrograms = () =>
 {
   return new Promise((resolve, reject) =>
     {
-      let mysql = `select * from program;`;
+      let mysql = `call getLanguagesAndSubquery();`;
       connection.query(mysql, (err, result) =>
         {
           err ? reject(err) : resolve(result);

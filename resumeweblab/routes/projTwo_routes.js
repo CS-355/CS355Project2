@@ -9,11 +9,21 @@ router.get('/listAllPrograms', (req, res) =>
     project2_dal.getPrograms()
     .then(result =>
       {
-        let programs = result
-        res.render('projTwo/listAllPrograms', {programs})
+
+        let programs = result[0]
+        // split into programs and subquery results
+        let subquery = result[1]
+        res.render('projTwo/listAllPrograms', {programs, subquery})
       }
+
     )
     //res.render('projTwo/listAllPrograms')
+  }
+)
+
+router.get('/about', (req, res) =>
+  {
+    res.render('projTwo/About')
   }
 )
 router.get('/addProgramLanguageStyle', (req, res) =>
@@ -22,6 +32,71 @@ router.get('/addProgramLanguageStyle', (req, res) =>
     //
     res.render('projTwo/addProgramLanguageStyle');
     // go to addLanguge page
+}
+);
+
+// add confirmation message
+router.get('/addNewProgramLanguageStyle', (req, res) =>
+{
+  console.log(req.query)
+  let program_name = req.query.name
+  // get max value for language_link
+  project2_dal.getMaxLanguageLink()
+  .then(result =>
+    {
+
+
+      project2_dal.getPrograms()
+      .then(result2 =>
+        {
+          console.log("result2", result2)
+          let programs = result2[0]
+          // go to another page and confirm the add
+          // send a success status for the div on the copy of the same ejs file
+          //let person_id = req.query.person_id
+          console.log(req.query)
+
+          //let success = true
+          let success = true
+          console.log("success", success)
+          let subquery = result2[1]
+          console.log(subquery)
+
+          console.log(result[0].max_language_link)
+          let language_link = result[0].max_language_link + 1
+          let program = {program_name, language_link}
+
+          // setup language object
+          let language_name = req.query.language_name
+          let language = {language_link, language_name}
+          let program_id = 1
+
+          let style_name = req.query.style_name
+          let style = {style_name, program_id}
+          project2_dal.insert(program, 'program')
+          project2_dal.insert(language, 'language')
+          project2_dal.insert(style, 'style')
+
+          // put into a collection
+          let persons = []
+          persons.push(program_name)
+          persons.push(language_name)
+          persons.push(style_name)
+          console.log("persons", persons)
+          res.render('projTwo/listAllProgramsAndConfirmationMessage', {success, persons, programs, subquery})
+
+        }
+      )
+
+
+
+      // setup style object
+      // insert all 3 objects
+      // update tables image and er diagram image
+      // render all programs page with confirmation message for all 3 names and include their field names
+    }
+  )
+
 }
 );
 
@@ -127,7 +202,7 @@ router.get('/addNewUser', (req, res) =>
               .then(result =>
                 {
                   console.log("result", result)
-                  let programs = result
+                  let programs = result[0]
                   // go to another page and confirm the add
                   // send a success status for the div on the copy of the same ejs file
                   //let person_id = req.query.person_id
@@ -136,10 +211,15 @@ router.get('/addNewUser', (req, res) =>
                   .then(person =>
                     {
                       console.log(person)
-                      let sucess = true
+                      let success = true
                       let person_name = person[0].person_name
-                      console.log("sucess", sucess)
-                      res.render('projTwo/listAllProgramsAndConfirmationMessage', {programs, person_name, sucess})
+
+                      console.log("success", success)
+                      let subquery = result[1]
+                      console.log(subquery)
+                      let persons = [person_name]
+
+                      res.render('projTwo/listAllProgramsAndConfirmationMessage', {programs, persons, success, subquery})
                       //res.render('projTwo/listAllPrograms', {programs})
                     }
                   )
@@ -213,10 +293,12 @@ router.get('/pickStylePerLanguage', (req, res) =>
             .then(person =>
               {
                 console.log(person)
-                let sucess = true
+                let success = true
                 let person_name = person[0].person_name
-                console.log("sucess", sucess)
-                res.render('projTwo/listAllProgramsAndConfirmationMessage', {programs, person_name, sucess})
+                console.log("success", success)
+                let persons = [person_name]
+
+                res.render('projTwo/listAllProgramsAndConfirmationMessage', {programs, persons, success})
                 //res.render('projTwo/listAllPrograms', {programs})
               }
             )
