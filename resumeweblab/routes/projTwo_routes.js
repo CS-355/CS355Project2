@@ -45,7 +45,27 @@ router.get('/addNewProgramLanguageStyle', (req, res) =>
   .then(result =>
     {
 
+      console.log(result[0].max_language_link)
+      let language_link = result[0].max_language_link + 1
+      let program = {program_name, language_link}
 
+      // setup language object
+      let language_name = req.query.language_name
+      let language = {language_link, language_name}
+      let program_id = 1
+
+      let style_name = req.query.style_name
+      let style = {style_name, program_id}
+      project2_dal.insert(program, 'program')
+      project2_dal.insert(language, 'language')
+      project2_dal.insert(style, 'style')
+
+      // put into a collection
+      let persons = []
+      persons.push(program_name)
+      persons.push(language_name)
+      persons.push(style_name)
+      console.log("persons", persons)
       project2_dal.getPrograms()
       .then(result2 =>
         {
@@ -55,34 +75,14 @@ router.get('/addNewProgramLanguageStyle', (req, res) =>
           // send a success status for the div on the copy of the same ejs file
           //let person_id = req.query.person_id
           console.log(req.query)
-
+          let subquery = result2[1]
+          console.log(subquery)
           //let success = true
           let success = true
           console.log("success", success)
-          let subquery = result2[1]
-          console.log(subquery)
 
-          console.log(result[0].max_language_link)
-          let language_link = result[0].max_language_link + 1
-          let program = {program_name, language_link}
 
-          // setup language object
-          let language_name = req.query.language_name
-          let language = {language_link, language_name}
-          let program_id = 1
 
-          let style_name = req.query.style_name
-          let style = {style_name, program_id}
-          project2_dal.insert(program, 'program')
-          project2_dal.insert(language, 'language')
-          project2_dal.insert(style, 'style')
-
-          // put into a collection
-          let persons = []
-          persons.push(program_name)
-          persons.push(language_name)
-          persons.push(style_name)
-          console.log("persons", persons)
           res.render('projTwo/listAllProgramsAndConfirmationMessage', {success, persons, programs, subquery})
 
         }
