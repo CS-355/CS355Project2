@@ -10,8 +10,13 @@
     contributions in lines of code: <input id="contributions" name="contributions" type="text" />
     <br />
     <br />
-    You can only pick 1 language
+    You can only pick one language
+    <br />
+    <br />
     languages:
+    <br />
+    <br />
+
     <select id="language_id" name="language_id" multiple="multiple">
         <% for(var i = 0; language.length > i; i++ ) {%>
         <option value="<%= language[i].language_id%>" ><%=language[i].language_name%></option>
@@ -24,9 +29,14 @@
             $('#language_id').multiselect();
         });
     </script>
-
+    <br />
+    <br />
+    You can only pick one style
+    <br />
+    <br />
     Styles :
-    must have a drop down list but tell user that they can only pick one item
+    <br />
+    <br />
 
     <select id="style_id" name="style_id" multiple="multiple">
         <% for(var j = 0; styles.length > j; j++ ) {%>
