@@ -16,7 +16,7 @@
     "less-middleware": "~2.2.0",
     "mime": "^2.3.1",
     "morgan": "~1.7.0",
-    "mysql": "~2.5.3",
+    "mysql": "~2.14.0",
     "serve-favicon": "~2.3.0"
   }
 }
